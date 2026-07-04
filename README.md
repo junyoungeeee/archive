@@ -13,7 +13,7 @@
 ## Projects
 | 프로젝트 | 설명 | 플랫폼 | 링크 |
 |---|---|---|---|
-| 💩 Poop Ring 💍 | 세상에서 가장 킹받는 1주년 선물 | Web | [서비스](https://poopring.junyounge.com/) · [GitHub](https://github.com/junyoungeeee/poopRing) |
+| 💩 Poop Ring 💍 | 세상에서 가장 킹받는 1주년 선물 | Web | [서비스](https://poopring.junyounge.com/) |
 
 ## Contact
 - Email: junyounge0712@gmail.com
