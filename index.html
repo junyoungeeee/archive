@@ -3,41 +3,393 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>junyounge.com</title>
+  <title>Junyounge</title>
+  <meta name="description" content="어딘가 킹받지만, 은근히 쓸모 있는 앱을 만듭니다. 둘이서 만드는 이상한 앱 공장.">
+  <meta property="og:title" content="Junyounge">
+  <meta property="og:description" content="어딘가 킹받지만, 은근히 쓸모 있는 앱을 만듭니다. 둘이서 만드는 이상한 앱 공장.">
+  <meta property="og:type" content="website">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0d0d0f;
-      color: #f5f5f7;
+    :root {
+      --bg: #f6f5f1;
+      --card: #ffffff;
+      --ink: #18181b;
+      --muted: #6b6b70;
+      --dim: #9a9aa0;
+      --border: #e7e5df;
+      --border-strong: #d8d5cc;
+      --accent: #16a34a;
+      --accent-soft: #dcfce7;
+      --amber: #b45309;
+      --amber-soft: #fef3c7;
+      --gray: #52525b;
+      --gray-soft: #ececec;
+      --shadow: 0 1px 2px rgba(24,24,27,0.04), 0 8px 24px -12px rgba(24,24,27,0.12);
+      --shadow-hover: 0 2px 4px rgba(24,24,27,0.05), 0 18px 40px -16px rgba(24,24,27,0.22);
     }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(720px 420px at 12% -8%, rgba(22,163,74,0.08), transparent 60%),
+        radial-gradient(680px 420px at 100% 4%, rgba(245,158,11,0.07), transparent 55%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
     .wrap {
-      height: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: clamp(48px, 9vw, 92px) 22px 72px;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero { text-align: center; }
+    .avatar {
+      width: clamp(88px, 22vw, 108px);
+      height: clamp(88px, 22vw, 108px);
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 18px;
+      border: 3px solid var(--card);
+      box-shadow: var(--shadow-hover), 0 0 0 1px var(--border-strong);
+      transition: transform .2s ease;
+    }
+    .avatar:hover { transform: rotate(-4deg) scale(1.03); }
+
+    .nav {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 24px;
+      gap: 10px;
+      font-size: 15px;
+      margin: 0 0 22px;
     }
+    .nav a { color: var(--muted); text-decoration: none; font-weight: 600; transition: color .15s ease; }
+    .nav a:hover { color: var(--accent); }
+    .nav .sep { color: var(--border-strong); }
+
     .dot {
-      width: 10px; height: 10px;
+      width: 9px; height: 9px;
       border-radius: 50%;
-      background: #22c55e;
+      background: var(--accent);
       display: inline-block;
-      margin-right: 8px;
-      box-shadow: 0 0 12px #22c55e;
+      margin-right: 10px;
+      vertical-align: middle;
+      box-shadow: 0 0 0 4px var(--accent-soft);
+      animation: pulse 2.4s ease-in-out infinite;
     }
-    h1 { font-size: clamp(28px, 6vw, 48px); margin: 0 0 12px; letter-spacing: -0.02em; }
-    p  { color: #a1a1aa; margin: 0; font-size: 16px; }
-    code { color: #f5f5f7; background: #1c1c1f; padding: 2px 8px; border-radius: 6px; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px var(--accent-soft); }
+      50% { box-shadow: 0 0 0 7px rgba(22,163,74,0.10); }
+    }
+
+    .hero .name {
+      font-size: clamp(26px, 5.6vw, 40px);
+      margin: 0 0 12px;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+    .hero .name .en { color: var(--muted); font-weight: 700; }
+    .hero .tag {
+      font-size: clamp(17px, 3vw, 21px);
+      margin: 0 0 10px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .hero .sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0 auto;
+      max-width: 44ch;
+    }
+
+    /* ---------- Sections ---------- */
+    section { margin-top: clamp(40px, 8vw, 60px); }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 0 18px;
+    }
+    .section-title {
+      font-size: 13px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin: 0;
+      font-weight: 800;
+    }
+
+    /* ---------- Filter tabs ---------- */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 0 20px;
+    }
+    .filter {
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      color: var(--gray);
+      transition: all .16s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .filter:hover { border-color: var(--ink); color: var(--ink); }
+    .filter.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+    .filter .count {
+      font-size: 12px;
+      opacity: .7;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ---------- Projects ---------- */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    /* light project card — reference layout: thumbnail on top, white info panel */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-strong);
+    }
+    .card .thumb-wrap { position: relative; }
+    .card .thumb {
+      display: block;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #000;
+    }
+    /* platform badge — top-left over the thumbnail (orange) */
+    .plat-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: #f97316;
+      padding: 4px 9px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .card .body { padding: 18px 20px 20px; }
+    .card .meta-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .card h3 { margin: 0; font-size: 21px; letter-spacing: -0.02em; color: var(--ink); }
+    .card .date {
+      font-size: 13px;
+      color: var(--dim);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .card .desc { margin: 0 0 16px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+
+    .card .links { display: grid; gap: 8px; }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      transition: all .15s ease;
+    }
+    .btn.primary { background: var(--ink); color: #fff; }
+    .btn.primary:hover { background: #000; }
+    .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--border-strong); }
+    .btn.ghost:hover { border-color: var(--ink); }
+    .btn.disabled { opacity: .4; pointer-events: none; }
+
+    /* empty state when a filter has no projects */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--dim);
+      font-size: 15px;
+      padding: 40px 20px;
+      border: 1px dashed var(--border-strong);
+      border-radius: 18px;
+    }
+    .empty[hidden] { display: none; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: clamp(52px, 9vw, 80px);
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      color: var(--dim);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* ---------- reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .dot { animation: none; }
+      .card:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1><span class="dot"></span>배포 성공</h1>
-    <p><code>junyounge.com</code> 도메인이 정상적으로 연결됐어요.</p>
-  </div>
+  <main class="wrap">
+
+    <!-- Hero -->
+    <header class="hero reveal">
+      <img class="avatar" src="감자2.jpg" alt="준영이 프로필 - 감자" width="108" height="108">
+      <h1 class="name">준영이 · <span class="en">Junyounge</span></h1>
+      <nav class="nav">
+        <a href="https://github.com/junyoungeeee" target="_blank" rel="noopener">GitHub</a>
+        <span class="sep">·</span>
+        <a href="https://www.instagram.com/jun.younge?igsh=bzd5cXRvNHJkdTRn" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <p class="tag">어딘가 킹받지만, 은근히 쓸모 있는 앱을 만듭니다.</p>
+      <p class="sub">둘이서 만드는 이상한 앱 공장입니다.<br>아이디어는 가볍게, 구현은 진심으로.</p>
+    </header>
+
+    <!-- Projects -->
+    <section class="reveal">
+      <div class="section-head">
+        <h2 class="section-title">🚧 Projects · 지금까지 만든 것</h2>
+      </div>
+
+      <!-- filter tabs (counts auto-filled by JS) -->
+      <div class="filters" role="tablist">
+        <button class="filter active" data-filter="all">전체 <span class="count"></span></button>
+        <button class="filter" data-filter="web">Web <span class="count"></span></button>
+        <button class="filter" data-filter="ios">iOS <span class="count"></span></button>
+        <button class="filter" data-filter="macos">macOS <span class="count"></span></button>
+      </div>
+
+      <div class="projects">
+
+        <!-- === project card: 복사해서 추가 ===
+             data-cat → web | ios | macos
+             plat-badge: 플랫폼 라벨(Web/iOS/macOS)
+             thumb 이미지 / date / GitHub·배포 링크(href) 채워서 사용 -->
+        <article class="card" data-cat="web">
+          <div class="thumb-wrap">
+            <img class="thumb" src="poopring.png" alt="Poop Ring 썸네일">
+            <span class="plat-badge">Web</span>
+          </div>
+          <div class="body">
+            <div class="meta-row">
+              <h3>Poop Ring 💍</h3>
+              <span class="date">2026-07-04</span>
+            </div>
+            <p class="desc">세상에서 가장 킹받는 1주년 선물</p>
+            <div class="links">
+              <a class="btn primary" href="https://github.com/junyoungeeee" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn ghost" href="https://poopring.junyounge.com/" target="_blank" rel="noopener">🚀 서비스 링크</a>
+            </div>
+          </div>
+        </article>
+        <!-- === /project card === -->
+
+        <p class="empty" hidden>이 카테고리는 아직 비어 있어요. 제조 중… 🛠</p>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 준영이네 · 아이디어는 가볍게, 구현은 진심으로. 🥔
+    </footer>
+
+  </main>
+
+  <script>
+    // ---- project filter tabs ----
+    (function () {
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.card[data-cat]'));
+      var empty = document.querySelector('.empty');
+
+      // fill counts
+      buttons.forEach(function (btn) {
+        var f = btn.dataset.filter;
+        var n = f === 'all' ? cards.length : cards.filter(function (c) { return c.dataset.cat === f; }).length;
+        var span = btn.querySelector('.count');
+        if (span) span.textContent = n;
+      });
+
+      function apply(filter) {
+        var shown = 0;
+        cards.forEach(function (c) {
+          var show = filter === 'all' || c.dataset.cat === filter;
+          c.style.display = show ? '' : 'none';
+          if (show) shown++;
+        });
+        if (empty) empty.hidden = shown !== 0;
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          buttons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          apply(btn.dataset.filter);
+        });
+      });
+    })();
+
+    // ---- reveal on scroll ----
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
