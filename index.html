@@ -196,6 +196,8 @@
       object-fit: cover;
       background: #000;
     }
+    /* 아이콘형 썸네일: 잘리지 않게 전체를 보여줌 */
+    .card .thumb.icon { object-fit: contain; padding: 16px; }
     /* platform badge — top-left over the thumbnail (orange) */
     .plat-badge {
       position: absolute;
@@ -345,6 +347,24 @@
             <p class="desc">슬랑이 중독자를 위한 선물</p>
             <div class="links">
               <a class="btn primary" href="https://github.com/junyoungeeee/slang" target="_blank" rel="noopener">🔗 GitHub 링크</a>
+            </div>
+          </div>
+        </article>
+        <!-- === /project card === -->
+
+        <article class="card" data-cat="ios">
+          <div class="thumb-wrap">
+            <img class="thumb icon" src="reminedo.png" alt="리마인두 썸네일">
+            <span class="plat-badge">iOS</span>
+          </div>
+          <div class="body">
+            <div class="meta-row">
+              <h3>리마인두</h3>
+              <span class="date">2026-07-11</span>
+            </div>
+            <p class="desc">알림을 누르면 실천이 되는 앱. 연결해둔 사진·링크·메모를 알림에서 바로 확인.</p>
+            <div class="links">
+              <a class="btn primary" href="https://apps.apple.com/kr/app/%EB%A6%AC%EB%A7%88%EC%9D%B8%EB%91%90/id6782855047" target="_blank" rel="noopener">📱 App Store 링크</a>
             </div>
           </div>
         </article>
